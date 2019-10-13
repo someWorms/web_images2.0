@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Full image</title>
+</head>
+<body>
+    <div>
+        <img th:src="@{${'/images/' + image.name}}">
+    </div>
+    <div th:each="imageComment : ${image.getComments()}">
+        <p th:text="${imageComment}"></p>
+    </div>
+    <hr>
+    <div>
+        <label>
+            <form action="#" th:action="@{/addComment/{name}(name=${image.name})}" method="POST">
+                <textarea placeholder="Leave your comment here" name="comment"></textarea>
+                <input type="submit" value="Add">
+            </form>
+        </label><br/>
+    </div>
+</body>
+</html>

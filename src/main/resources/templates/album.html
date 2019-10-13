@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Album</title>
+    <style>
+        div.gallery {
+            margin: 5px;
+            border: 1px solid #ccc;
+            float: left;
+            width: 180px;
+        }
+
+        div.gallery:hover {
+            border: 1px solid #777;
+        }
+
+        div.gallery img {
+            width: 100%;
+            height: auto;
+        }
+
+        div.desc {
+            padding: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<!--
+    <div th:each="image : ${images}" class="gallery">
+        <a th:href="@{${'/album/showFull/' + image.name}}">
+            <img th:src="@{${'/images/' + image.name}}" alt="image">
+        </a>
+        <div class="desc" th:text="${image.getComments()}">XXX</div>
+    </div>
+-->
+
+    <div th:each="image : ${images}" class="gallery">
+        <a th:href="@{${'/album/showFull/' + image.name}}">
+            <img th:src="@{${'/images/' + image.name}}" alt="image">
+        </a>
+        <div class="desc" th:text="${image.getRandComment()}">XXX</div>
+    </div>
+
+</body>
+</html>

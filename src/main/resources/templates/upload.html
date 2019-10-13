@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload</title>
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+        $('textarea').autoResize();
+    </script>-->
+    <style>
+        img {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+            width: 350px;
+        }
+        textarea {
+            resize: none;
+            width: 200px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+File(image):<br>
+<form method="POST" action="saveImage" enctype="multipart/form-data" id="uploadForm">
+    <input type="file" name="myFile" accept="image/*" required/> <br/>
+
+    Commentary: <br/>
+
+    <label>
+        <textarea placeholder="Leave your comment here" name="comments" form="uploadForm"></textarea>
+    </label><br/>
+
+    <input type="submit" value="Upload"/><br/>
+    <a th:href="@{'/album/'}">Show my gallery</a><br/>
+
+</form>
+<hr>
+<br/>
+<div th:if="${image.name != null}">You Uploaded:
+    <span th:text="${image.name}"></span><br/>
+    <img th:src="@{${'/images/' + image.name}}">
+</div>
+</body>
+</html>
