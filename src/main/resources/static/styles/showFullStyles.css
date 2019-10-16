@@ -1,0 +1,9 @@
+textarea {
+    resize: none;
+    width: 200px;
+    height: 100px;
+}
+input[type=submit]{
+    width: 206px;
+    text-align: center;
+}

@@ -1,14 +1,12 @@
 package com.worm.web_images20.controller;
 
-import com.worm.web_images20.dao.JpaTheImageDAO;
-import com.worm.web_images20.dao.TheImageDAO;
+
 import com.worm.web_images20.model.TheImage;
 import com.worm.web_images20.service.TheImageService;
-import org.dom4j.rule.Mode;
+import com.worm.web_images20.valid.ImageValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
@@ -20,9 +18,18 @@ public class TheImageController {
     @Autowired
     private TheImageService theImageService;
 
+
     @PostMapping("/saveImage")
     public ModelAndView save(@ModelAttribute("uploadedImage") TheImage theImage) {
         ModelAndView modelAndView = new ModelAndView();
+        ImageValidator imageValidator = new ImageValidator();
+
+        try {
+            imageValidator.isImage(theImage);
+        } catch (Exception e) {
+            modelAndView.setViewName("error");
+            return modelAndView;
+        }
 
 
         /*Save model, it HAVE TO be before persisting*/

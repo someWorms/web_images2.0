@@ -1,6 +1,8 @@
 package com.worm.web_images20.model;
 
 import lombok.Data;
+import net.sf.jmimemagic.Magic;
+import net.sf.jmimemagic.MagicMatch;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -64,4 +66,5 @@ public class TheImage {
         this.name = name;
         return name;
     }
+
 }
