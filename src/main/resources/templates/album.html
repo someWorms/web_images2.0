@@ -5,6 +5,15 @@
     <meta charset="UTF-8">
     <title>Album</title>
     <style>
+        table{
+            border: 3px solid black;
+            border-collapse: collapse;
+            background: aqua;
+        }
+        body{
+            background: darkblue;
+        }
+
         div.gallery {
             margin: 5px;
             border: 1px solid #ccc;
@@ -24,26 +33,26 @@
         div.desc {
             padding: 15px;
             text-align: center;
+            background: white;
         }
     </style>
 </head>
 <body>
 
-<!--
-    <div th:each="image : ${images}" class="gallery">
-        <a th:href="@{${'/album/showFull/' + image.name}}">
-            <img th:src="@{${'/images/' + image.name}}" alt="image">
-        </a>
-        <div class="desc" th:text="${image.getComments()}">XXX</div>
-    </div>
--->
+<h3 style="text-align: center">Your Album. Want upload more? <a th:href="@{/}">click!</a></h3>
 
-    <div th:each="image : ${images}" class="gallery">
-        <a th:href="@{${'/album/showFull/' + image.name}}">
-            <img th:src="@{${'/images/' + image.name}}" alt="image">
-        </a>
-        <div class="desc" th:text="${image.getRandComment()}">XXX</div>
-    </div>
+<table>
+    <tr>
+        <td>
+            <div class="gallery" th:each="image : ${images}" >
+                <a th:href="@{${'/album/showFull/' + image.name}}">
+                    <img th:src="@{${'/images/' + image.name}}" alt="image">
+                </a>
+                <div class="desc" th:text="${image.getRandComment()}">XXX</div>
+            </div>
+        </td>
+    </tr>
+</table>
 
 </body>
 </html>

@@ -29,16 +29,14 @@ public class TheImageController {
         try {
             theImage.saveTheImageToFolder();
         }catch (IOException e){
+            e.printStackTrace();
+            /*Will show error page if IOException is thrown*/
             modelAndView.setViewName("error");
             return modelAndView;
         }
-        /*TheImage theImage = new TheImage(myFile.getOriginalFilename(), uploadCommentary, myFile);*/
 
         /*Persist image*/
         theImageService.save(theImage);
-
-
-        System.out.println(theImage.getComments());
 
         modelAndView.setViewName("upload");
         modelAndView.addObject("image", theImage);
@@ -60,7 +58,7 @@ public class TheImageController {
         return modelAndView;
     }
 
-    @PostMapping("addComment/{name}")
+    @PostMapping("/album/showFull/{name}")
     public ModelAndView addCom(@PathVariable String name, @RequestParam String comment){
 
         TheImage theImage = theImageService.getByName(name);

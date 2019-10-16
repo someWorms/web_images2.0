@@ -4,12 +4,13 @@ import com.worm.web_images20.model.TheImage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ViewController {
     @RequestMapping("/")
-    public String uploadPage(Model model){
+    public ModelAndView uploadPage(Model model){
         model.addAttribute("image", new TheImage());
-        return "upload";
+        return new ModelAndView("upload");
     }
 }

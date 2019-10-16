@@ -4,10 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Full image</title>
+    <style>
+        textarea {
+            resize: none;
+            width: 200px;
+            height: 100px;
+        }
+        input[type=submit]{
+            width: 206px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
+
+<h3 style="text-align: center">Your Full Image. Want to see album? <a th:href="@{/album}">click!</a></h3>
+
     <div>
-        <img th:src="@{${'/images/' + image.name}}">
+        <img th:src="@{${'/images/' + image.name}}" alt="image">
     </div>
     <div th:each="imageComment : ${image.getComments()}">
         <p th:text="${imageComment}"></p>
@@ -15,11 +29,12 @@
     <hr>
     <div>
         <label>
-            <form action="#" th:action="@{/addComment/{name}(name=${image.name})}" method="POST">
+            <form action="#" th:action="@{/album/showFull/{name}(name=${image.name})}" method="POST">
                 <textarea placeholder="Leave your comment here" name="comment"></textarea>
-                <input type="submit" value="Add">
+                <br/>
+                <input type="submit" value="Add" size="50">
             </form>
-        </label><br/>
+        </label>
     </div>
 </body>
 </html>
