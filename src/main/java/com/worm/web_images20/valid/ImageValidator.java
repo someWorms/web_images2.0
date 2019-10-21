@@ -6,6 +6,9 @@ import net.sf.jmimemagic.MagicMatch;
 
 import java.io.IOException;
 
+/**
+ * Validate image to be an true image
+ * */
 public class ImageValidator {
     public boolean isImage(TheImage theImage) throws Exception {
         MagicMatch match;

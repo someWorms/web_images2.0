@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
+/**
+ * Implementation of TheImageService
+ * All methods should be readOnly, but not save method.
+ * */
 
 @Service
 @Transactional(readOnly = true)
@@ -20,12 +23,19 @@ public class TheImageServiceImpl implements TheImageService {
         return theImageRepository.findAll();
     }
 
-
+    /**
+     * Persists ready image to DataBase
+     * @param theImage ready image, comes from controller
+     * */
     @Transactional
     public void save(TheImage theImage){
         theImageRepository.save(theImage);
     }
 
+    /**
+     * Retrieve image by given name
+     * @param name image name
+     * */
     @Override
     public TheImage getByName(String name) {
         return theImageRepository.findByName(name);

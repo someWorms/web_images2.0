@@ -14,9 +14,12 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+/**
+ * Core model. stores metadata of the image.
+ * Used Lombok to avoid getters and setters in this model
+ * Override setter for comment to give it proper functionality
+ * */
 @Entity
-/*Getters, Setters to all fields + all-args constructor*/
 @Data
 public class TheImage {
 
@@ -38,12 +41,11 @@ public class TheImage {
     @ElementCollection
     private List<String> comments = new ArrayList<>();
 
-    /*Lombok setter is not valid*/
     public void setComments(String comments) {
         this.comments.add(comments);
     }
 
-    /*Method is called from thymeleaf, to show random comment from list*/
+
     public String getRandComment(){
         return comments.get((int) (Math.random() * comments.size()));
     }
@@ -63,8 +65,10 @@ public class TheImage {
     public TheImage() {
     }
 
-    /*slug, prevent bugs if we have 2 uploaded images with same name (now it has unique name),
-      also used to send data in get request instead of ID */
+    /** slug, prevent bugs if we have 2 uploaded images with same name (now it has unique name),
+     *  also used to send data as get request instead of ID
+     * @param  name  name of uploafef image.
+     */
     private String _nameGenerator(String name) {
         long _slugNumber = new Date().getTime();
         name = (_slugNumber+name);
