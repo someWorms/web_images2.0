@@ -4,6 +4,7 @@ package com.worm.web_images20.controller;
 import com.worm.web_images20.model.TheImage;
 import com.worm.web_images20.service.TheImageService;
 import com.worm.web_images20.valid.ImageValidator;
+import com.worm.web_images20.valid.NoImageException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,15 @@ public class TheImageController {
     public ModelAndView save(@ModelAttribute("uploadedImage") TheImage theImage) {
         ModelAndView modelAndView = new ModelAndView();
         ImageValidator imageValidator = new ImageValidator();
+
+        try {
+            if(theImage == null || theImage.getMyFile().getBytes() == null){
+                throw new NoImageException();
+            }
+        }catch (Exception e){
+            modelAndView.setViewName("error");
+            return modelAndView;
+        }
 
         try {
             imageValidator.isImage(theImage);

@@ -1,14 +1,14 @@
 package com.worm.web_images20.model;
 
 import lombok.Data;
-import net.sf.jmimemagic.Magic;
-import net.sf.jmimemagic.MagicMatch;
 import org.springframework.web.multipart.MultipartFile;
 
 
 import javax.persistence.*;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -50,8 +50,13 @@ public class TheImage {
 
     public void saveTheImageToFolder() throws IOException{
 
-        Path path = Paths.get(ABSOLUTE_PATH + FILE_FOLDER + _nameGenerator(myFile.getOriginalFilename()));
-        Files.write(path, myFile.getBytes());
+        if(new File(ABSOLUTE_PATH + FILE_FOLDER).exists()) {
+            Path path = Paths.get(ABSOLUTE_PATH + FILE_FOLDER + _nameGenerator(myFile.getOriginalFilename()));
+            Files.write(path, myFile.getBytes());
+        }else{
+            new File(ABSOLUTE_PATH + FILE_FOLDER).mkdir();
+            saveTheImageToFolder();
+        }
 
     }
 
