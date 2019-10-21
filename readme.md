@@ -6,4 +6,6 @@ This is my second version of web_images project.
 This app store images, and commentary list. Also there is a gallery, with all uploaded images.
 
 To start it, start application.java class.
-before start  you should create a folder outside your src named "images".
+Application will create all necessary folders for you.
+
+All you need is to configure database connection in application.properties
