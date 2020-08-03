@@ -9,12 +9,12 @@
 <body>
 File(image):<br>
 <form method="POST" action="saveImage" enctype="multipart/form-data" id="uploadForm">
-    <input type="file" name="myFile" accept="image/*" required/> <br/>
+    <input type="file" name="file" accept="image/*" required/> <br/>
 
     Commentary: <br/>
 
     <label>
-        <textarea placeholder="Leave your comment here" name="comments" form="uploadForm"></textarea>
+        <textarea placeholder="Leave your comment here" name="commentary" form="uploadForm"></textarea>
     </label><br/>
 
     <input type="submit" value="Upload"/><br/>
@@ -23,9 +23,9 @@ File(image):<br>
 </form>
 <hr>
 <br/>
-<div th:if="${image.name != null}">You Uploaded:
-    <span th:text="${image.name}"></span><br/>
-    <img th:src="@{${'/images/' + image.name}}">
+<div th:if="${image.getFile() != null}">You Uploaded:
+    <span th:text="${image.getFile().getOriginalFilename()}"></span><br/>
+    <img th:src="@{${'/images/' + image.getFile().getOriginalFilename()}}">
 </div>
 </body>
 </html>

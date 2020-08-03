@@ -25,3 +25,7 @@ div.desc {
     text-align: center;
     background: white;
 }
+input {
+    width: 100%;
+    height: auto;
+}

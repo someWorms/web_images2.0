@@ -11,15 +11,20 @@
 <h3 style="text-align: center">Your Full Image. Want to see album? <a th:href="@{/album}">click!</a></h3>
 
     <div>
-        <img th:src="@{${'/images/' + image.name}}" alt="image">
+        <img th:src="@{${'/images/' + image.imageName}}" alt="image">
     </div>
-    <div th:each="imageComment : ${image.getComments()}">
+    <div th:each="imageComment : ${image.comments}">
         <p th:text="${imageComment}"></p>
     </div>
     <hr>
     <div>
         <label>
-            <form action="#" th:action="@{/album/showFull/{name}(name=${image.name})}" method="POST">
+            <form action="#" th:action="@{/album/showFull/add}" th:object="${image}" method="POST">
+                <input type="hidden" th:value="${image.uuid}" name="uuid"/>
+                <input type="hidden" th:value="${image.pathAndName}" name="pathAndName"/>
+                <input type="hidden" th:value="${image.imageName}" name="imageName"/>
+                <input type="hidden" th:value="${image.comments}" name="comments"/>
+
                 <textarea placeholder="Leave your comment here" name="comment"></textarea>
                 <br/>
                 <input type="submit" value="Add" size="50">
