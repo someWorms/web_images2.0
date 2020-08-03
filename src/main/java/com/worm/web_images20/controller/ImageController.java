@@ -14,8 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.nio.file.Files;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -66,26 +64,37 @@ public class ImageController {
         return this.modelAndView;
     }
 
+    /*
+    * Found out that passing object from th frontend not a good idea, and tg does not allow do it good
+    * so i use uuid instead.
+    * */
 
-    @PostMapping("/album/showFull")
-    public ModelAndView showData(@ModelAttribute ImageShowDTO image){
+
+    @GetMapping("/album/showFull/{uuid}")
+    public ModelAndView showData(@PathVariable String uuid){
 
         this.modelAndView.setViewName("showFull");
-        this.modelAndView.addObject("image", image);
+        this.modelAndView.addObject("image",mapper.convertImageEntityToOneImageShowDto(imageService.getByUuid(uuid)));
         return modelAndView;
     }
 
 
     
-    @PostMapping("/album/showFull/add")
-    public ModelAndView addCom(@ModelAttribute ImageShowDTO image, @RequestParam String comment){
-        System.out.println(image.getImageName());
-        image.getComments().add(comment);
-        this.imageService.update(this.mapper.convertImageShowDTOtoImageEntity(image));
+    @PostMapping("/album/showFull/{uuid}")
+    public ModelAndView addCom(@PathVariable String uuid, @RequestParam String comment){
+        System.out.println("aaaaaaaaaaa");
+        //get dto by uuid
+        ImageEntity updated = imageService.getByUuid(uuid);
+        //add shit to dto
+        updated.getComments().add(comment);
+        System.out.println("vvvvvvvvvv");
+        //save entity
+        this.imageService.update(updated);
+
 
 
         this.modelAndView.setViewName("showFull");
-        this.modelAndView.addObject("image", image);
+        this.modelAndView.addObject("image", this.mapper.convertImageEntityToOneImageShowDto(imageService.getByUuid(uuid)));
 
         return this.modelAndView;
     }

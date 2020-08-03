@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * */
 @Repository
 public interface ImageRepository extends JpaRepository<ImageEntity, Long> {
-    ImageEntity findByFileName(String name);
+    ImageEntity findByUuid(String uuid);
 }

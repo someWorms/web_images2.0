@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface ImageService {
     List<ImageEntity> getAll();
     void save(ImageEntity imageEntity);
-    ImageEntity getByName(String name);
     ImageEntity getOneImage(ImageEntity imageEntity);
     ImageEntity update(ImageEntity imageEntity);
+    ImageEntity getByUuid(String uuid);
 }

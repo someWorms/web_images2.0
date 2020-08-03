@@ -15,4 +15,8 @@ public class ImageShowDTO {
     private String imageName;
     private List<String> comments;
 
+
+    public String getRandComment(){
+        return comments.get((int) (Math.random() * comments.size()));
+    }
 }

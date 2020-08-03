@@ -10,4 +10,5 @@ public interface ImageMapper {
     public ImageEntity convertImageFileDTOtoImageEntity(ImageFileDTO data);
     public List<ImageShowDTO> convertImageEntityToImageShowDto(List<ImageEntity> entities);
     public ImageEntity convertImageShowDTOtoImageEntity(ImageShowDTO imageShowDTO);
+    public ImageShowDTO convertImageEntityToOneImageShowDto(ImageEntity imageEntity);
 }

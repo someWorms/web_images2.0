@@ -23,6 +23,7 @@ import java.util.UUID;
 //@Transactional(readOnly = true)
 public class ImageServiceImpl implements ImageService {
 
+
     private final ImageRepository imageRepository;
 
     private static final Path ABSOLUTE_PATH = Paths.get(".").toAbsolutePath();
@@ -52,17 +53,17 @@ public class ImageServiceImpl implements ImageService {
 
 
     @Override
-    public ImageEntity getByName(String name) {
-        return this.imageRepository.findByFileName(name);
-    }
-
-    @Override
     public ImageEntity getOneImage(ImageEntity imageEntity) {
         if (imageEntity.getId() < 0) {
             return null;
         }
 
         return imageRepository.getOne(imageEntity.getId());
+    }
+
+    @Override
+    public ImageEntity getByUuid(String uuid) {
+        return imageRepository.findByUuid(uuid);
     }
 
     @Override
@@ -80,11 +81,6 @@ public class ImageServiceImpl implements ImageService {
         }
     }
 
-/*    private String _nameGenerator(String name) {
-        long _slugNumber = new Date().getTime();
-        name = (_slugNumber+name);
-        return name;
-    }*/
 
     public ImageServiceImpl(ImageRepository imageRepository) {
         this.imageRepository = imageRepository;

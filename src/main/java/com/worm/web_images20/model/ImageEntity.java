@@ -47,8 +47,4 @@ public class ImageEntity {
     private List<String> comments = new ArrayList<>();
 
 
-/*    public String getRandComment(){
-        return comments.get((int) (Math.random() * comments.size()));
-    }*/
-
 }

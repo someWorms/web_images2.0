@@ -14,21 +14,11 @@
     <tr>
         <td>
             <div class="gallery" th:each="image : ${images}" >
+                <a th:href="@{${'/album/showFull/' + image.uuid}}">
+                    <img th:src="@{${'/images/' + image.imageName}}" alt="image">
+                </a>
 
-
-                <form action="#" th:action="@{/album/showFull}" th:object="${image}" method="post">
-                    <!--fuck it-->
-                    <input type="hidden" th:value="${image.uuid}" name="uuid"/>
-                    <input type="hidden" th:value="${image.pathAndName}" name="pathAndName"/>
-                    <input type="hidden" th:value="${image.imageName}" name="imageName"/>
-                    <input type="hidden" th:value="${image.comments}" name="comments"/>
-
-                    <input type="image" th:src="@{${'/images/' + image.imageName}}"  alt="image">
-                    <input type="submit">
-                </form>
-
-
-       <!--        <div class="desc" th:text="${image.getRandComment()}">XXX</div>-->
+                <div class="desc" th:text="${image.getRandComment()}">XXX</div>
             </div>
         </td>
     </tr>

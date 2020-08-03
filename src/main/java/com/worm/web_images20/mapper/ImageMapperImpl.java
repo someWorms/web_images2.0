@@ -45,4 +45,14 @@ public class ImageMapperImpl implements ImageMapper{
         imageEntity.setComments(imageShowDTO.getComments());
         return imageEntity;
     }
+
+    @Override
+    public ImageShowDTO convertImageEntityToOneImageShowDto(ImageEntity imageEntity) {
+        ImageShowDTO showDTO = new ImageShowDTO();
+        showDTO.setPathAndName(imageEntity.getPathAndName());
+        showDTO.setUuid(imageEntity.getUuid());
+        showDTO.setImageName(imageEntity.getFileName());
+        showDTO.setComments(imageEntity.getComments());
+        return showDTO;
+    }
 }

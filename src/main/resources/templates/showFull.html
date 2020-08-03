@@ -19,11 +19,7 @@
     <hr>
     <div>
         <label>
-            <form action="#" th:action="@{/album/showFull/add}" th:object="${image}" method="POST">
-                <input type="hidden" th:value="${image.uuid}" name="uuid"/>
-                <input type="hidden" th:value="${image.pathAndName}" name="pathAndName"/>
-                <input type="hidden" th:value="${image.imageName}" name="imageName"/>
-                <input type="hidden" th:value="${image.comments}" name="comments"/>
+            <form action="#" th:action="@{/album/showFull/{uuid}(uuid=${image.uuid})}" method="POST">
 
                 <textarea placeholder="Leave your comment here" name="comment"></textarea>
                 <br/>
