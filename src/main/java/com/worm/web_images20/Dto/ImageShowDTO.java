@@ -15,7 +15,7 @@ public class ImageShowDTO {
     private String imageName;
     private List<String> comments;
 
-
+    //used in thymeleaf to show a random comment.
     public String getRandComment(){
         return comments.get((int) (Math.random() * comments.size()));
     }
