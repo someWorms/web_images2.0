@@ -24,7 +24,6 @@ public class ViewController {
 
     @RequestMapping("/register")
     public ModelAndView register(){
-
         return new ModelAndView("register");
     }
 
